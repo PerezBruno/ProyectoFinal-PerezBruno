@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Seguros - Pérez Bruno</title>
+    <!-- fontawesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="./bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/main.css">
+
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-2 fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex justify-content-between align-items-center order-lg-0" href="index.html">
+                <img src="./images/secured.png" alt="site icon" class="logo">
+                <span class="text-uppercase fw-lighter ms-2 ">asegurar</span>
+            </a>
+            <div class="order-lg-2 nav-btns">
+                <input type="search" name="" id="busquedaSeguros">
+                <button type="button" class="btn position-relative" onclick="filtroSeguros()" data-bs-toggle="modal"
+                    data-bs-target="#modalBusqueda">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <div class="order-lg-3 nav-btns">
+                <div id="consultas" class="letter">
+                    <button type="button" class="btn position-relative" onclick="htmlConsultas()" data-bs-toggle="modal"
+                        data-bs-target="#modalConsultas">
+                        <i class="fa-solid fa-briefcase fa-2x"></i>
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle badge bg-primary numero mt-3"></span>
+                        <h6>Solicitudes</h6>
+                    </button>
+                </div>
+            </div>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse order-lg-1" id="navMenu">
+                <ul class="navbar-nav mx-auto text-center">
+                    <li class="nav-item px-2 py-2">
+                        <a href="#header" class="nav-link text-uppercase text-dark ms-lg-5 me-lg-3">home</a>
+                    </li>
+                    <li class="nav-item px-2 py-2">
+                        <a href="#people" class="nav-link text-uppercase text-dark ms-lg-5 me-lg-3">seguro personas</a>
+                    </li>
+                    <li class="nav-item px-2 py-2">
+                        <a href="#commerce" class="nav-link text-uppercase text-dark ms-lg-5 me-lg-3">seguro
+                            empresas</a>
+                    </li>
+                    <li class="nav-item px-2 py-2">
+                        <a href="#about" class="nav-link text-uppercase text-dark ms-lg-5 me-lg-3">sobre nosotros</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- end of navbar -->
+
+    <!-- filter zone -->
+    <div class="modal fade" id="modalBusqueda" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="title text-center ">
+                        <h2 class="position-relative d-inline-block mb-2 ms-4">
+                            <i class="fa fa-search"></i>
+                            Resultados
+                        </h2>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="">
+                            <div class="filter collection-list mt-4 row gx-0 gy-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of filter zone -->
+
+    <!-- Consultas zone -->
+    <div class="modal fade" id="modalConsultas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="title text-center ">
+                        <h2 class="position-relative d-inline-block mb-2 ms-4">
+                            <i class="fa-sharp fa-solid fa-question"></i>
+                            Solicitudes Pendientes
+                        </h2>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="">
+                            <div class="consulta collection-list mt-4 row gx-0 gy-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger danger eliminarConsultas"
+                        onclick="eliminarSolicitudes()">Eliminar solicitudes</button>
+                    <button type="submit" class="btn btn-primary" id="aceptarConsultas"
+                        onclick="enviarSolicitudes()">Enviar Solicitudes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of consultas zone -->
+
+    <!-- header -->
+    <header id="header" class="vh-100 carousel slide" data-bs-ride="carousel" style="padding-top: 104px;">
+        <div class="container h-100 d-flex align-items-center carousel-inner">
+            <div class="text-center carousel-item active">
+                <h2 class=" text-white">Pedí tu cotización de manera ágil y rápida</h2>
+                <h1 class="text-uppercase py-2 fw-bold text-white"> nueva interfaz</h1>
+                <!-- <a href="#" class="btn mt-3 text-uppercase">shop now</a> -->
+            </div>
+            <div class="text-center carousel-item">
+                <h2 class="text-white">Contratá el seguro para tu hogar</h2>
+                <h1 class="text-uppercase py-2 fw-bold text-white">beneficios exclusivos</h1>
+                <!-- <a href="#" class="btn mt-3 text-uppercase">buy now</a> -->
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#header" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#header" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </header>
+    <!-- end of header -->
+    <!-- people -->
+    <section id="people" class="p-5">
+        <div class="container">
+            <div class="title text-center">
+                <h2 class="position-relative d-inline-block">Seguro Personas</h2>
+            </div>
+            <div class="row g-0">
+
+            </div>
+            <div class="collection-list mt-4 row gx-0 gy-3" id="segurosPersonas">
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- end of people -->
+    <!-- commerce -->
+    <section id="commerce" class="py-5">
+        <div class="container">
+            <div class="title text-center py-5">
+                <h2 class="position-relative d-inline-block">Seguro Empresas</h2>
+            </div>
+            <div class="special-list row g-0" id="segurosEmpresas">
+            </div>
+        </div>
+
+    </section>
+    <!-- en of commerce -->
+
+    <!-- Modal Personas -->
+    <div class="modal fade" id="modalPersonas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="title text-center ">
+                        <h2 class="position-relative d-inline-block mb-2 ms-4">Seguro Personas</h2>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="formPersona">
+                    <div class="modal-body">
+                        <select id="formSelectPersona" class="form-select mb-3  mt-5"
+                            aria-label="Default select example">
+                            <option selected required>Selecciona el tipo de seguro</option>
+                            <option value="Autos">Autos</option>
+                            <option value="Motos">Motos</option>
+                            <option value="Accidentes Personales">Accidentes Personales</option>
+                            <option value="Objetos Personales">Objetos Personales</option>
+                            <option value="Mala Praxis">Mala Praxis</option>
+                            <option value="Incendios">Incendios</option>
+                            <option value="Hogar">Hogar</option>
+                            <option value="Viajes">Viajes</option>
+                        </select>
+                        <div class="mb-3">
+                            <label for="formNombrePersonas" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="formNombrePersona" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formEmailPersona" class="form-label f">Email</label>
+                            <input type="email" class="form-control" id="formEmailPersona" aria-describedby="emailHelp"
+                                required>
+                        </div>
+                        <div id="formTextPersonas" class="form-text mt-3">Dejanos tus datos y un asesor se pondrá en
+                            contacto a la
+                            brevedad</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar en Portafolio</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Empresas -->
+    <div class="modal fade" id="modalEmpresas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="title text-center ">
+                        <h2 class="position-relative d-inline-block mb-2 ms-4">Seguro Empresas</h2>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="formEmpresa">
+                    <div class="modal-body">
+                        <select id="formSelectEmpresa" class="form-select mb-3  mt-5"
+                            aria-label="Default select example">
+                            <option selected required>Selecciona el tipo de seguro</option>
+                            <option value="Empleados">Empleados</option>
+                            <option value="Obra">Obra</option>
+                            <option value="Flota de vehículos">Flota de vehículos</option>
+                            <option value="Pymes">Pymes</option>
+                        </select>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="formNombreEmpresa" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="formEmailEmpresa" aria-describedby="emailHelp"
+                                required>
+                        </div>
+                        <div id="emailHelpPersona" class="form-text mt-3">Dejanos tus datos y un asesor se pondrá en
+                            contacto a la
+                            brevedad</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary ">Guardar en Portafolio</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- about us -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row gy-lg-5 align-items-center">
+                <div class="col-lg-6 order-lg-1 text-center text-lg-start">
+                    <div class="title pt-3 pb-5">
+                        <h2 class="position-relative d-inline-block ms-4">Sobre Nosotros</h2>
+                    </div>
+                    <p class="lead text-muted">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus,
+                        fuga.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum sit aut iure quibusdam nihil
+                        nesciunt explicabo at, in, id omnis veritatis autem. Delectus accusamus ab voluptatem alias
+                        porro officiis adipisci maiores velit voluptate, atque, quam excepturi vel eos minus magni
+                        maxime recusandae tempora perspiciatis placeat dolorem repellendus? Magni, quae eaque.</p>
+                </div>
+                <div class="col-lg-6 order-lg-0">
+                    <img src="./images/about_2.jpg" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!--end of about us -->
+
+    <!-- contact -->
+    <section id="messages">
+        <div class="container">
+            <div class="align-items-center justify-content-center">
+                <div class="title text-center pt-3 pb-5">
+                    <h2 class="position-relative d-inline-block ms-4 mt-5">Dejanos tus consultas</h2>
+                </div>
+                <p class="text-center text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quas iste
+                    similique, consequatur ea odio!</p>
+                <form action="" id="message-form">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="message-name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="message-email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
+                        <textarea class="form-control" id="message-text" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary" type="submit">Enviar mensaje</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- end of contact -->
+    <!-- dialog contact -->
+    <dialog id="modalMessage">
+        <div class="info-message">
+        </div>
+        <div class="mb-3">
+            <button id="btn-close-modal-message" class="btn btn-primary mt-3" type="submit" data-bs-toggle="modal"
+                data-bs-target="#modalMensages" onclick="location.reload()">Aceptar</button>
+        </div>
+    </dialog>
+    <!--  end of dialog contact  -->
+
+
+    <!--  footer  -->
+    <footer class="bg-dark py-5">
+        <div class="container">
+            <div class="row text-white g-4">
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-uppercase text-decoration-none brand text-white" href="index.html">asegurar</a>
+                    <p class="text-white text-muted mt-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Perferendis earum itaque labore doloremque nulla, dolor pariatur quos alias! Eos,
+                        exercitationem.</p>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light">Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="my-3">
+                            <a href="#" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="#people" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i>
+                                Seguro Personas
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="#commerce" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i>
+                                Seguro Empresas
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="#messages" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i>
+                                Consultas
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light mb-3">Contact us</h5>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class="me-3">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </span>
+                        <span class="fw-light">
+                            Alguna calle 672, Rosario, Santa Fe, Argentina.
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class="me-3">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="fw-light">
+                            asegurar.soporte@gmail.com
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class="me-3">
+                            <i class="fas fa-phone-alt"></i>
+                        </span>
+                        <span class="fw-light">+549 341 988998
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light mb-3">Seguinos en las redes</h5>
+                    <div class="d-flex">
+                        <ul class="list-unstyled d-flex">
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4 ">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4 ">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4 ">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end of footer  -->
+
+
+    <!-- bootstrap js -->
+    <script src="./bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
+    <!-- Custom js -->
+    <script src="./Js/script.js"></script>
+    <!--Sweet Alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

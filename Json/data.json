@@ -1,0 +1,88 @@
+{
+	"tipoSeguroPersonas": [{
+			"id": "auto",
+			"nombre": "Autos",
+			"url": "./images/auto.png",
+			"estado": "",
+			"descripcion": "x"
+		},
+		{
+			"id": "moto",
+			"nombre": "Motos",
+			"url": "./images/moto.png",
+			"estado": "",
+			"descripcion": "x"
+		},
+		{
+			"id": "accidente",
+			"nombre": "Accidentes Personales",
+			"url": "./images/accidentes.png",
+			"estado": "",
+			"descripcion": ""
+		},
+		{
+			"id": "objetos",
+			"nombre": "Objetos Personales",
+			"url": "./images/objetosPersonales.png",
+			"estado": "",
+			"descripcion": ""
+		},
+		{
+			"id": "praxis",
+			"nombre": "Mala Praxis",
+			"url": "./images/malaPraxis.png",
+			"estado": "",
+			"descripcion": ""
+		},
+		{
+			"id": "incendios",
+			"nombre": "Incendios",
+			"url": "./images/incendios.png",
+			"estado": "",
+			"descripcion": ""
+		},
+		{
+			"id": "hogar",
+			"nombre": "Hogar",
+			"url": "./images/hogar.png",
+			"estado": "Nuevo!",
+			"descripcion": ""
+		},
+		{
+			"id": "viajes",
+			"nombre": "Viajes",
+			"url": "./images/viajes.png",
+			"estado": "Nuevo!",
+			"descripcion": ""
+		}
+	],
+	"tipoSeguroEmpresas": [{
+			"id": "empleados",
+			"nombre": "Empleados",
+			"url": "./images/empleados.png",
+			"estado": "",
+			"descripcion": ""
+		},
+		{
+			"id": "obra",
+			"nombre": "Obra",
+			"url": "./images/obra.png",
+			"estado": "",
+			"descripcion": ""
+		},
+		{
+			"id": "flota",
+			"nombre": "Flota de vehículos",
+			"url": "./images/flota.png",
+			"estado": "Nuevo!",
+			"descripcion": ""
+		},
+		{
+			"id": "pymes",
+			"nombre": "PyMes",
+			"url": "./images/tienda.png",
+			"estado": "",
+			"descripcion": "x"
+		}
+	]
+}
